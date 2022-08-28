@@ -172,9 +172,9 @@ def get_readable_message():
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)}"
-                msg += f"\Process: <i>{get_readable_file_size(download.processed_bytes())} of {download.size()}</i>"
+                msg += f"\nProcess: <i>{get_readable_file_size(download.processed_bytes())} of {download.size()}</i>"
                 msg += f"\nEta: <i>{download.eta()}</i>"
-                msg += f"\Speed: <i>{download.speed()}</i>"
+                msg += f"\nSpeed: <i>{download.speed()}</i>"
 
                 if hasattr(download, 'seeders_num'):
                     try:
