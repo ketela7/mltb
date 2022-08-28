@@ -83,7 +83,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
 
     reply_to = message.reply_to_message
     if reply_to is not None:
-        file_ = reply_to.document or reply_to.video or reply_to.audio or reply_to.photo or None
+        file_ = reply_to.media# or reply_to.video or reply_to.audio or reply_to.photo or None
         if not reply_to.from_user.is_bot:
             if reply_to.from_user.username:
                 tag = f"@{reply_to.from_user.username}"
@@ -104,7 +104,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
                     nextmsg = type('nextmsg', (object, ), {'chat_id': message.chat.id, 'message_id': message.reply_to_message.message_id + 1})
                     nextmsg = sendMessage(message.text.replace(str(multi), str(multi - 1), 1), bot, nextmsg)
                     nextmsg.from_user.id = message.from_user.id
-                    LOGGER.info(nextmsg)
+                    #LOGGER.info(nextmsg)
                     sleep(4)
                     Thread(target=_mirror_leech, args=(bot, nextmsg, isZip, extract, isQbit, isLeech)).start()
                 return
