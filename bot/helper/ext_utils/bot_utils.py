@@ -140,7 +140,7 @@ class progress_style:
 
 
     def disk(self):
-        total, used, free = disk_usage('/')
+        total, used, free, _ = disk_usage('/')
         msg = self.disk_info("DISK", total, used, free)
         return msg
 

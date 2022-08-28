@@ -42,9 +42,9 @@ class TelegramDownloadStatus:
 
     def eta(self):
         try:
-           # second = time() - self.__obj.__start_time
+            second = time() - self.__obj.__start_time
             seconds = (self.size_raw() - self.processed_bytes()) / self.speed_raw()
-            return f'{get_readable_time(seconds)}'
+            return f'{get_readable_time(second)}  /  {get_readable_time(seconds)}'
         except:
             return '-'
 
