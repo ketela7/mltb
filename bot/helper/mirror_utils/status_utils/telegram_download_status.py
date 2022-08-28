@@ -44,7 +44,7 @@ class TelegramDownloadStatus:
         try:
             #second = round(time() - self.__obj.__start_time)
             seconds = (self.size_raw() - self.processed_bytes()) / self.speed_raw()
-            return f'{self.__obj.__start_time}  /  {get_readable_time(seconds)}'
+            return f'{self.__obj.start}  /  {get_readable_time(seconds)}'
         except:
             return '-'
 

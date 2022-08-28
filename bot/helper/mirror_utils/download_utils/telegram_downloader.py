@@ -19,6 +19,7 @@ class TelegramDownloadHelper:
         self.size = 0
         self.progress = 0
         self.downloaded_bytes = 0
+        self.start = time()
         self.__start_time = time()
         self.__listener = listener
         self.__id = ""
