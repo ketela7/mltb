@@ -11,7 +11,6 @@ from bot.helper.ext_utils.bot_utils import get_readable_message, setInterval
 
 
 def sendMessage(text: str, bot, message: Message):
-    LOGGER.info(message)
     try:
         return bot.sendMessage(message.chat_id,
                             reply_to_message_id=message.message_id,

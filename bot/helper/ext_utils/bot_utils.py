@@ -3,7 +3,7 @@ from threading import Thread, Event
 from time import time
 from math import ceil
 from html import escape
-from psutil import virtual_memory, cpu_percent, disk_usage
+from psutil import virtual_memory, cpu_percent, disk_usage, net_io_counters
 from requests import head as rhead
 from urllib.request import urlopen
 
@@ -106,7 +106,7 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '▣' * cFull
+    p_str = '■' * cFull
     p_str += '□' * (12 - cFull)
     p_str = f"[{p_str}]"
     return p_str
@@ -171,6 +171,8 @@ def get_readable_message():
         bmsg = f"<b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
         bmsg += f"\n<b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
         bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
+        bmsg += f'\n🔻 {get_readable_file_size(net_io_counters().bytes_recv)}  🔺 {get_readable_file_size(net_io_counters().bytes_sent)}'
+
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
