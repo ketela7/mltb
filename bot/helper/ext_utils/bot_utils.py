@@ -146,7 +146,7 @@ class progress_style:
 
 
     def system_info(self, dl_speed, up_speed):
-        msg = f"DL/UP  {get_readable_file_size(dl_speed)}/s / {get_readable_file_size(up_speed)}/s"
+        msg = f"⚡{get_readable_file_size(dl_speed)}/s  ⚡{get_readable_file_size(up_speed)}/s"
         msg += f"\nCPU  <i>{cpu_percent()}%</i> | UPTIME  <i>{get_readable_time(time() - botStartTime)}</i>"
         msg += self.ram()
         msg += self.disk()
@@ -172,9 +172,9 @@ def get_readable_message():
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)}"
-                msg += f"\nPROCESS: <i>{get_readable_file_size(download.processed_bytes())} of {download.size()}</i>"
-                msg += f"\nETA: <i>{download.eta()}</i>"
-                msg += f"\nSPEED: <i>{download.speed()}</i>"
+                msg += f"\Process: <i>{get_readable_file_size(download.processed_bytes())} of {download.size()}</i>"
+                msg += f"\nEta: <i>{download.eta()}</i>"
+                msg += f"\Speed: <i>{download.speed()}</i>"
 
                 if hasattr(download, 'seeders_num'):
                     try:
