@@ -146,11 +146,11 @@ class progress_style:
 
 
     def system_info(self, dl_speed, up_speed):
-        msg = f"\nCPU  <i>{cpu_percent()}%</i>  UPTIME  <i>{get_readable_time(time() - botStartTime)}</i>"
-        msg += f"\n⚡  {get_readable_file_size(dl_speed)}/s  |  {get_readable_file_size(up_speed)}/s\n"
+        msg += f"\nCPU  <i>{cpu_percent()}%</i> | {get_readable_file_size(dl_speed)}/s | {get_readable_file_size(up_speed)}/s"
         msg += self.ram()
         msg += self.disk()
-        msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}\n"
+        msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
+        msg += f"UPTIME  <i>{get_readable_time(time() - botStartTime)}</i>"
         return msg
 
 
