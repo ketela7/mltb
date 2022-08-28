@@ -89,7 +89,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
             if reply_to.from_user.username:
                 tag = f"@{reply_to.from_user.username}"
             else:
-                tag = reply_to.from_user.mention_html(reply_to.from_user.first_name)
+                tag = ''#reply_to.from_user.mention_html(reply_to.from_user.first_name)
         if len(link) == 0 or not is_url(link) and not is_magnet(link):
             if file_ is None:
                 reply_text = reply_to.text.split(maxsplit=1)[0].strip()
