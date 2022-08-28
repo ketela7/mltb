@@ -12,7 +12,7 @@ from bot.helper.ext_utils.bot_utils import get_readable_message, setInterval
 
 def sendMessage(text: str, bot, message: Message):
     try:
-        return bot.sendMessage(message.chat.id,
+        return bot.sendMessage(message.chat_id,
                             reply_to_message_id=message.message_id,
                             text=text, allow_sending_without_reply=True, parse_mode='HTML', disable_web_page_preview=True)
     except RetryAfter as r:
@@ -25,7 +25,7 @@ def sendMessage(text: str, bot, message: Message):
 
 def sendMarkup(text: str, bot, message: Message, reply_markup: InlineKeyboardMarkup):
     try:
-        return bot.sendMessage(message.chat.id,
+        return bot.sendMessage(message.chat_id,
                             reply_to_message_id=message.message_id,
                             text=text, reply_markup=reply_markup, allow_sending_without_reply=True,
                             parse_mode='HTML', disable_web_page_preview=True)
