@@ -146,7 +146,7 @@ class progress_style:
 
 
     def system_info(self, dl_speed, up_speed):
-        msg += f"\nCPU  <i>{cpu_percent()}%</i> | {get_readable_file_size(dl_speed)}/s | {get_readable_file_size(up_speed)}/s"
+        msg = f"\nCPU  <i>{cpu_percent()}%</i> | {get_readable_file_size(dl_speed)}/s | {get_readable_file_size(up_speed)}/s"
         msg += self.ram()
         msg += self.disk()
         msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
@@ -226,6 +226,7 @@ def get_readable_message():
             button = buttons.build_menu(2)
             return f"<b>{msg}{bmsg}</b>", button
         return f"<b>{msg}{bmsg}</b>", ""
+
 
 def turn(data):
     try:
