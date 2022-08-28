@@ -145,12 +145,17 @@ class progress_style:
         return msg
 
 
+    def cpu(self):
+        cpu = round(cpu_percent())
+        return self.disk_info("CPU", 100, cpu, (100 - cpu))
+
     def system_info(self, dl_speed, up_speed):
         msg = f"⚡{get_readable_file_size(dl_speed)}/s  ⚡{get_readable_file_size(up_speed)}/s"
-        msg += f"\nCPU  <i>{cpu_percent()}%</i> | UPTIME  <i>{get_readable_time(time() - botStartTime)}</i>"
+        msg += self.cpu()
         msg += self.ram()
         msg += self.disk()
         msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
+        msg += f"🛰️  {get_readable_time(time() - botStartTime)}"
         return msg
 
 
