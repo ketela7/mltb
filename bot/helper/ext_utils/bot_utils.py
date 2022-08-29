@@ -127,29 +127,13 @@ class progress_style:
         return p_str
 
 
-    def disk_info(self, info_type, total, used, free):
-        text = f"\n[{info_type}] {get_readable_file_size(used)}  /  {get_readable_file_size(free)}  of  {get_readable_file_size(total)}"
-        text = f"\n{self.bar(used, total)}"
-        return text
-
-
-    def ram(self):
-        ram = virtual_memory()
-        msg = self.disk_info("RAM", ram.total, ram.used, ram.available)
-        return msg
-
-
-    def disk(self):
-        total, used, free, _ = disk_usage('/')
-        msg = self.disk_info("DISK", total, used, free)
-        return msg
-
 
     def system_info(self, dl_speed, up_speed):
-        msg = f"[CPU] ⚡ {get_readable_file_size(dl_speed)}/s ⚡ {get_readable_file_size(up_speed)}/s"
-        msg += f"\n{self.bar(round(cpu_percent()), 100)}"
-        msg += self.ram()
-        msg += self.disk()
+        total, used, free, _ = disk_usage(DOWNLOAD_DIR)
+        msg = f"[D/U]⚡ {get_readable_file_size(dl_speed)}/s ⚡ {get_readable_file_size(up_speed)}/s"
+        msg += f"\n[CPU]{self.bar(round(cpu_percent()), 100)}"
+        msg += f"\n[RAM]{self.bar(virtual_memory().used, virtual_memory().total)}"
+        msg += f"\n[DIS]{self.bar(used, total)}"
         msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
         msg += f"📶  {get_readable_time(time() - botStartTime)}"
         return msg
