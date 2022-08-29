@@ -130,10 +130,10 @@ class progress_style:
 
     def system_info(self, dl_speed, up_speed):
         total, used, free, _ = disk_usage(DOWNLOAD_DIR)
-        msg = f"[D/U]⚡ {get_readable_file_size(dl_speed)}/s ⚡ {get_readable_file_size(up_speed)}/s"
+        msg = f"[D||U] ⚡ {get_readable_file_size(dl_speed)}/s ⚡ {get_readable_file_size(up_speed)}/s"
         msg += f"\n[CPU]{self.bar(round(cpu_percent()), 100)}"
         msg += f"\n[RAM]{self.bar(virtual_memory().used, virtual_memory().total)}"
-        msg += f"\n[DIS]{self.bar(used, total)}"
+        msg += f"\n[DISK]{self.bar(used, total)}"
         msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
         msg += f"📶  {get_readable_time(time() - botStartTime)}"
         return msg
