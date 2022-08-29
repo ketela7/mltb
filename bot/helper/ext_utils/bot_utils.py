@@ -155,7 +155,7 @@ class progress_style:
         msg += self.ram()
         msg += self.disk()
         msg += f"\n🔻  {get_readable_file_size(net_io_counters().bytes_recv)}  🔺  {get_readable_file_size(net_io_counters().bytes_sent)}  "
-        msg += f"🛰️  {get_readable_time(time() - botStartTime)}"
+        msg += f"📶  {get_readable_time(time() - botStartTime)}"
         return msg
 
 
