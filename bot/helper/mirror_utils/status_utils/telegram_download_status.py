@@ -1,5 +1,5 @@
 from bot.helper.ext_utils.bot_utils import MirrorStatus, get_readable_file_size, get_readable_time
-from time import time
+
 
 class TelegramDownloadStatus:
     def __init__(self, obj, listener, gid):
@@ -42,9 +42,8 @@ class TelegramDownloadStatus:
 
     def eta(self):
         try:
-            second = round(time() - self.__obj.start_time)
             seconds = (self.size_raw() - self.processed_bytes()) / self.speed_raw()
-            return f'{get_readable_time(second)}  /  {get_readable_time(seconds)}'
+            return f'{get_readable_time(seconds)}'
         except:
             return '-'
 
